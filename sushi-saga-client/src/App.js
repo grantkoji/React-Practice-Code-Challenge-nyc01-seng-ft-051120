@@ -68,18 +68,20 @@ class App extends Component {
     })
   }
 
-  // {this.state.formToggle 
-  //   ? <React.Fragment>
-  //     <button onClick={this.toggleFundsForm}>Hide Funds Form</button>
-  //     <FundsForm addToCustomerBudget={this.addToCustomerBudget}/>
-  //     </React.Fragment>
-  //   : <button onClick={this.toggleFundsForm}>Add Funds</button>
-  // }
+ 
+
+  // <FundsForm addToCustomerBudget={this.addToCustomerBudget}/>
 
   render() {
     return (
       <div className="app">
-        <FundsForm addToCustomerBudget={this.addToCustomerBudget}/>
+         {this.state.formToggle 
+        ? <React.Fragment>
+            <button onClick={this.toggleFundsForm}>Hide Funds Form</button>
+             <FundsForm addToCustomerBudget={this.addToCustomerBudget}/>
+        </React.Fragment>
+        : <button onClick={this.toggleFundsForm}>Add Funds</button>
+  }
         <SushiContainer sushiIndex={this.state.sushiIndex} sushis={this.state.sushis} addSushiToBelt={this.addSushiToBelt} purchaseSushi={this.purchaseSushi}/>
         <Table emptyPlates={this.state.emptyPlates} customerBudget={this.state.customerBudget}/>
       </div>
