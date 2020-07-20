@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import SushiContainer from './containers/SushiContainer';
 import Table from './containers/Table';
-import FundsForm from './containers/FundsForm';
+import FundsForm from './components/FundsForm.js';
 // Endpoint!
 const API = "http://localhost:3000/sushis"
 
@@ -61,15 +61,25 @@ class App extends Component {
       return {formToggle: !prevState.formToggle}
     })
   }
+  
+  addToCustomerBudget = (newFunds) => {
+    this.setState(prevState => {
+      return {customerBudget: prevState.customerBudget + newFunds}
+    })
+  }
 
+  // {this.state.formToggle 
+  //   ? <React.Fragment>
+  //     <button onClick={this.toggleFundsForm}>Hide Funds Form</button>
+  //     <FundsForm addToCustomerBudget={this.addToCustomerBudget}/>
+  //     </React.Fragment>
+  //   : <button onClick={this.toggleFundsForm}>Add Funds</button>
+  // }
 
   render() {
     return (
       <div className="app">
-        <button onClick={this.toggleFundsForm}>Add Funds</button>
-        {this.state.formToggle 
-          && <fundsForm />
-        }
+        <FundsForm addToCustomerBudget={this.addToCustomerBudget}/>
         <SushiContainer sushiIndex={this.state.sushiIndex} sushis={this.state.sushis} addSushiToBelt={this.addSushiToBelt} purchaseSushi={this.purchaseSushi}/>
         <Table emptyPlates={this.state.emptyPlates} customerBudget={this.state.customerBudget}/>
       </div>
